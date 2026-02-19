@@ -17,10 +17,7 @@ on:
 jobs:
   build:
 
-    runs-on: ${{matrix.os}}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -31,4 +28,12 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xmld
+
+      - name: Build and Push Docker image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: udeshikarathnayaka/ncrcs-repository
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
