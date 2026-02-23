@@ -15,7 +15,7 @@ public class ItemService {
 	public ItemService() {
 		items.add(new Item(1L, "Item One", "First sample item"));
 		items.add(new Item(2L, "Item Two", "Second sample item"));
-		items.add(new Item(3L, "Item Three", "Third sample item"));
+		items.add(new Item(3L, "Item Three", "Third sample "));
 
 	}
 
